@@ -1,0 +1,423 @@
+/*-----------------------------------------------------------------
+[Legal Notice]
+
+Copyright (c) HighHay/Mivfx
+Before using this template, you should agree with themeforest licenses terms.
+http://themeforest.net/licenses
+-------------------------------------------------------------------*/
+
+/*------------------------------------------------------------------
+[Table of contents]
+
+0. Initialization
+    0.1. Reset HTML Tags
+    0.2. Text Position / .text-*
+
+1. Body
+	1.1. Body background / body
+	1.2. Background Mask / .main-bg-mask
+
+	2.2. 
+        2.2.2. Clock / .clock-layout
+
+8. Screen Responsiveness
+    8.1. Handset Screen Less than 768 px width
+    8.2. Handset Screen Less 480 px width
+    8.3. Handset Screen Less than 360 px width    
+
+-------------------------------------------------------------------*/
+
+/*-----------------------------------------------------------------
+[Color codes]
+Default Colors:
+    White : #F8F9FA, #FFF
+
+Clock :
+    White : #F8F9FA, #FFF
+-------------------------------------------------------------------*/
+
+
+/* 2.2.2. Clock */
+.page .content .clock:before {
+	display: none;
+}
+.page .content .clock {
+	background: transparent !important;
+}
+.clock-layout{
+    margin: auto;
+/*
+    width: 430px;
+    height: 430px;
+    margin-right: -215px;
+    margin-top: -215px;
+*/
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	
+	top: -14px;
+	left: -14px;
+	right: -14px;
+	bottom: -14px;
+    
+	position: absolute;
+
+}
+.clock-layout .clock-container{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    margin: auto;    
+}  
+/* LOGO */
+.clock-container .c-logo-top{
+    width: 100%;
+    height: 100%;
+}
+.clock-container .c-logo-top img.logo{
+    position: relative;
+    top:90px;
+    display: block;
+    height: 64px;
+    width: auto;
+    margin: auto;    
+}
+
+.clock-layout .clock-zero{
+    
+    top:50%;
+    left:0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin-top: -6.4rem;
+    text-align: center;
+    font-family: 'Asap', sans-serif;
+    font-size: 5rem;
+    text-transform: capitalize;
+}
+.c-layout{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top:0;
+    left:0;
+/*        transition: 1s linear;*/
+        -webkit-transition: 1s;
+        -moz-transition: 1s;
+        -ms-transition: 1s;
+        transition: 1s;
+}
+
+    .c-layout.c-metric{
+        background-repeat: no-repeat;
+        background-size: 100% 100%;    
+    }
+    .c-layout.c-metric .c-rect{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top:0;
+        left:0;   
+    }
+    .c-layout.c-metric .c-rect.c-rect-b .c-mes{
+        position: relative;
+        width: 7px;
+        height: 25px;
+        margin: auto;
+        background: #ffa310;
+    }
+    .c-layout.c-metric .c-rect.c-rect-s .c-mes{
+        position: relative;
+        width: 7px;
+        height: 18px;
+        margin: auto;
+        background: #ffa310;
+        background: #fff;
+        margin-top: 14px;
+    }
+    .c-layout.c-metric .c-minsec-number{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        margin: auto;
+    }
+    .c-layout.c-metric .c-minsec-number .c-num{
+        position: absolute;
+        color: #ffa310;
+        color: #fff; 
+        letter-spacing: -0px;
+        font-family: 'Asap', sans-serif;
+        font-size: 20px;
+    }
+
+    .c-layout.c-metric .c-minsec-number .c-num.c-top{  
+        top:0;
+        left:50%;
+        padding-top: 7px;
+        margin-left: -12px;
+        text-align: center;
+    }
+    .c-layout.c-metric .c-minsec-number .c-num.c-right{ 
+        top:50%;
+        right:0;
+        margin-top: -11px;
+        margin-right: 14px;
+    }
+    .c-layout.c-metric .c-minsec-number .c-num.c-left{        
+        bottom:50%;
+        left:0;
+        margin-bottom: -11px;
+        margin-left: 14px;
+    }
+    .c-layout.c-metric .c-minsec-number .c-num.c-bottom{        
+        bottom:0;
+        right:50%;
+        padding-bottom: 7px;
+        margin-right: -10px;
+    }
+    
+    /* MINUTES */
+    .c-layout.c-minute{
+/*        background: url('../img/clock/minutes.svg');    */
+        background-repeat: no-repeat;
+        background-size: 100% 100%;    
+    }
+    .c-layout.c-minute-bg .c-circle,
+    .c-layout.c-minute .c-circle{
+        position: absolute;
+        top:12%;
+        left:12%;
+        width: 76%;
+        height: 76%;
+        content: ' ';
+        border-radius: 100%;
+    }
+    .c-layout.c-minute-bg .c-circle{     
+        -webkit-box-shadow: inset 0 0 0px 2px #fff;
+        box-shadow: inset 0 0 0px 2px #fff;
+		background: rgba(255, 255, 255, 0.10);
+    }
+    .c-layout.c-minute .c-dot{
+        position: absolute;
+        top:10.25%;
+        left:48.35%;
+        width: 3.5%;
+        height: 3.5%;
+        content: ' ';
+        background: #fff;
+/*        background: #fff;*/
+        border-radius: 100%;
+    }
+    /* SECONDS */
+    .c-layout.c-second{
+/*        background: url('../img/clock/seconds.svg');    */
+        background-repeat: no-repeat;
+        background-size: 100% 100%;  
+    }
+    .c-layout.c-second-bg .c-circle,
+    .c-layout.c-second .c-circle{
+         position: absolute;
+        top:16%;
+        left:16%;
+        width: 68%;
+        height: 68%;
+        content: ' ';
+        background: transparent;
+        border-radius: 100%;        
+    }
+
+    .c-layout.c-second-bg .c-circle{ 
+       
+        -webkit-box-shadow: inset 0 0 0px 2px #fff;
+        box-shadow: inset 0 0 0px 2px #fff;
+		background: rgba(255, 255, 255, 0.15);
+    }
+    .c-layout.c-second .c-dot{
+        position: absolute;
+        top:14.5%;
+        left:48.35%;
+        width: 3.5%;
+        height: 3.5%;
+        content: ' ';
+        background: #fff;
+/*        background: #fff;*/
+        border-radius: 100%;
+
+
+    }
+    /*separator*/
+    .c-layout.c-separator .c-fill{
+        display: none;
+    }
+    /* HOURS */
+    .c-layout.c-hour{
+        top:65.5%;
+        margin-top: 0;
+        text-align: center;
+        height: auto;
+        color: #fff;
+        
+    }
+        .c-layout.c-hour .number{
+            font-family: 'Asap', sans-serif;
+			font-weight: bold;
+            font-size: 56px;
+            display: inline-block;
+            background: #cbc8b4;
+            background: transparent;
+            border-radius: 0.75rem;
+            
+            line-height: 4rem;
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+            
+            padding-bottom: 0.0rem;
+            padding-top: 0.2rem;
+            
+/*
+             box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.1),
+            inset 0 2px 5px rgba(0, 0, 0, 0.54),
+            inset 0  0 0px 5px rgba(250, 0, 0, 0),
+            inset 0 0 10px 2px rgba(69, 69, 69, 0.17) ;
+*/
+            
+            -webkit-box-sizing: border-box;
+            -ms-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        /* DAYS */
+        .c-layout.c-hour .metric{
+            font-family: 'Asap', sans-serif;
+			font-weight: normal;
+            position: absolute;
+            font-size: 24px;      
+            margin-top: -0.2rem;            
+            margin-top: 1.1rem;            
+            padding-left: 0.5rem;
+            text-transform: uppercase;
+        }
+
+    .c-layout.c-day{
+        text-align: center;
+        top:50%;
+        height: auto;
+        margin-top: -53px;
+        color: #fff;
+    }
+        .c-layout.c-day .number{
+            font-family: 'Asap', sans-serif;
+            display: inline-block;
+            background: #cbc8b4;
+            background: transparent;
+            
+            border-radius: 5px;
+            vertical-align: middle;
+
+            box-shadow: inset 0 -2px 3px rgba(0, 0, 0, 0.1),
+            inset 0 3px 5px rgba(0, 0, 0, 0.54),
+            inset 0  0 1px 1px rgba(0, 0, 0, 0.1),
+            inset 0 0 10px 2px rgba(69, 69, 69, 0.12) ;
+            
+            -webkit-box-sizing: border-box;
+            -ms-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            
+            
+            font-size: 96px;
+			font-weight: bold;
+            line-height: 0.8em;
+            padding: 0.5rem;
+            vertical-align: top;
+        }
+        .c-layout.c-day .metric{
+            font-family: 'Asap', sans-serif;
+			font-weight: normal;
+            font-size: 24px;
+            letter-spacing: 2.25rem;
+            padding-left:  2.25rem;
+            text-transform: uppercase;
+/*            margin-top: -1.6rem;*/
+            display: block;
+        }
+		
+		/* DOTS */
+		
+		.c-layout .rot0{    
+			-moz-transform: rotate(0deg);
+			-webkit-transform: rotate(0deg);
+			-ms-transform: rotate(0deg);
+			transform: rotate(0deg);
+		}
+		.c-layout .rot30{    
+			-moz-transform: rotate(30deg);
+			-webkit-transform: rotate(30deg);
+			-ms-transform: rotate(30deg);
+			transform: rotate(30deg);
+		}
+		.c-layout .rot60{    
+			-moz-transform: rotate(60deg);
+			-webkit-transform: rotate(60deg);
+			-ms-transform: rotate(60deg);
+			transform: rotate(60deg);
+		}
+		.c-layout .rot90{    
+			-moz-transform: rotate(90deg);
+			-webkit-transform: rotate(90deg);
+			-ms-transform: rotate(90deg);
+			transform: rotate(90deg);
+		}
+		.c-layout .rot120{    
+			-moz-transform: rotate(120deg);
+			-webkit-transform: rotate(120deg);
+			-ms-transform: rotate(120deg);
+			transform: rotate(120deg);
+		}
+		.c-layout .rot150{    
+			-moz-transform: rotate(150deg);
+			-webkit-transform: rotate(150deg);
+			-ms-transform: rotate(150deg);
+			transform: rotate(150deg);
+		}
+		.c-layout .rot180{    
+			-moz-transform: rotate(180deg);
+			-webkit-transform: rotate(180deg);
+			-ms-transform: rotate(180deg);
+			transform: rotate(180deg);
+		}
+		.c-layout .rot210{    
+			-moz-transform: rotate(210deg);
+			-webkit-transform: rotate(210deg);
+			-ms-transform: rotate(210deg);
+			transform: rotate(210deg);
+		}
+		.c-layout .rot240{    
+			-moz-transform: rotate(240deg);
+			-webkit-transform: rotate(240deg);
+			-ms-transform: rotate(240deg);
+			transform: rotate(240deg);
+		}
+		.c-layout .rot270{    
+			-moz-transform: rotate(270deg);
+			-webkit-transform: rotate(270deg);
+			-ms-transform: rotate(270deg);
+			transform: rotate(270deg);
+		}
+		.c-layout .rot300{    
+			-moz-transform: rotate(300deg);
+			-webkit-transform: rotate(300deg);
+			-ms-transform: rotate(300deg);
+			transform: rotate(300deg);
+		}
+		.c-layout .rot330{    
+			-moz-transform: rotate(330deg);
+			-webkit-transform: rotate(330deg);
+			-ms-transform: rotate(330deg);
+			transform: rotate(330deg);
+		}
+  

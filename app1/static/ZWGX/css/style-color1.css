@@ -1,0 +1,105 @@
+/* Font customization */
+
+.header-top .menu a,
+.page-footer,
+.quick-link .title,
+.p-footer .text,
+.p-footer .arrow-d,
+.page-footer a,
+.page-cent .content,
+.page-cent .p-title h3,
+.page-cent .p-title h2,
+.page-cent .text,
+.page h2,
+.page h3,
+.page h4,
+.page p,
+.page .content .clock .header,
+.page .clock .text,
+.page .clock .elem-center .digit,
+.page .clock .elem-right .digit,
+.page .clock .elem-left .digit,
+.page .form input,
+.page .form label,
+.page .form button,
+.page .form textarea,
+.page-contact a ,
+.page-contact .socialnet a{
+	font-family: 'Opensans';
+	letter-spacing: -0.01em;
+	color: #555555;
+}
+
+.page .form button{
+	color: #fff;
+}
+.page .clock .elem-center .digit,
+.page .clock .elem-right .digit,
+.page .clock .elem-left .digit
+{
+	letter-spacing: -0.05em;
+}
+.header-top .menu a:hover,
+.quick-link a {
+	color: #555555;
+}
+.quick-link a:hover {
+	color: #ffffff;
+}
+#fp-nav span:after, .fp-slidesNav span:after{
+	background: rgba(55, 58, 80, 0.15);
+}
+#fp-nav ul li a span,
+#fp-nav li .active span, .fp-slidesNav .active span{
+	background: #555555;
+}
+#fp-nav span, .fp-slidesNav span{
+	border-color: #555555;
+}
+.quick-link a ,
+.header-top .menu a:hover,
+.page-contact .p-title .buttons,
+.p-footer .arrow-d {
+	background: rgba(55, 58, 80, 0.15);
+}
+.header-top .menu a:first-child:after ,
+.p-footer .arrow-d .circle {
+	background: #555555;
+}
+.page-home .content h2 {
+	color: #26878E;
+}
+.page-home .content h2 strong {
+	color: #555555;
+/*	color: #006870;*/
+/*	color: #B0ABC2;*/
+}
+
+.page-home .content .subhead {
+/*	color: #A3D0D3;*/
+	color: #ABABAB;
+}
+.page-home .content .subhead:hover {
+	color:  #26878E;
+}
+
+/* Color */
+.title.bg-blue,
+.bg-blue,
+.mask-blue:before,
+.quick-link a:hover:after,
+.quick-link a.marked,
+.header-top.material .menu a:hover,
+.p-footer .arrow-d:hover,
+.page .form button{
+	background: #26878e;
+}
+.page .form .fields,
+.page-cent .p-title h3{
+	border-bottom-color: #26878e;
+}
+.header-top.material .menu a,
+.header-top .menu a,
+.page .form button:hover{
+	color: #26878e;
+}

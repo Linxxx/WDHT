@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!-- 新 Bootstrap 核心 CSS 文件 -->
+        <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <!-- 可选的Bootstrap主题文件（一般不用引入） -->
+        <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+        <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+        <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+        <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+        <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <title>问答系统</title>
+    </head>
+
+    <!--
+    <body background="../../../static/img/robot.png" style=" background-repeat:no-repeat ;background-size:110% 130%;">
+    -->
+    <body>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                     <div class="navbar-header">
+                        <div class="navbar-brand" style="color: #1E90FF" >
+                            <span class="glyphicon glyphicon-fire"></span>&nbsp;&nbsp;Eric&nbsp;&nbsp;自动问答系统
+                        </div>
+                     </div>
+                </div>
+            </div>
+        </div>
+
+        <br><br><br><br><br>
+
+        <div class="container" style="filter:alpha(opacity=90);opacity:0.90;">
+            <div class="row-fluid">
+                <div class="span12">
+                    <div class="hero-unit well">
+                        <h1>
+                            Eric
+                        </h1>
+                        <p>
+                            Eric是一个集自然语言处理，统计机器学习和深度学习技术的自动问答系统。目前Eric支持聊天、航运运价查询、常用知识问答等功能，同时Eric的用户反馈收集模块能更好地帮助Eric在问答中学习到新的知识，更好地为用户服务。
+                        </p>
+                        <p>
+                            <a class="btn btn-primary btn-large" href="#">更多 »</a>
+                        </p>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-12">
+                            <h2>回答</h2>
+                            <div class="table-responsive">
+                              <table class="table table-bordered">
+                                <tbody>
+                                  <tr class="warning" height="150px">
+                                    <td id="answ">
+                                        <textarea rows=6 style="font-size:26px;overflow:auto; resize:none; background-color:transparent; width:100%;word-break:break-all;">{{ Answer }}</textarea>
+                                    </td>
+                                  </tr>
+                                  <tr class="success" height="70px">
+                                    <td >
+                                        <textarea id="ques" rows=2 style="font-size:26px;overflow:auto; resize:none; background-color:transparent; width:100%;word-break:break-all;" >{{ Question }}</textarea>
+                                    <!--</td>
+                                    <td>-->
+                                        <button onclick="submit()" class="btn btn-primary btn-lg">提交</button>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+            <div align="center">
+                <a href="http://222.44.90.83/asiit" target="_blank">
+                    <img alt="Iotlab logo" height="40" src="../common_static/img/iotlab-logo.png" width="40">
+                航运信息技术研究所 © 2013 -2017
+                </a>
+            </div>
+        </nav>
+
+        <script>
+            function submit(){
+                var content = '' + document.getElementById("ques").value;
+                //alert(content)
+                // 创建一个 form
+                var tempform = document.createElement("form");
+                tempform.id = "form1";
+                tempform.name = "form1";
+                // 添加到 body 中
+                document.body.appendChild(tempform);
+                // 创建输入
+                var Question = document.createElement("input");
+
+                // 设置相应参数
+                Question.type = "text";
+                Question.name = "Question";
+                Question.value = content;
+
+                //将该输入框插入到 form 中
+                tempform.appendChild(Question);
+
+                tempform.method = "POST";
+                tempform.action = "/website/submit/";
+
+                tempform.submit();
+                document.body.removeChild(tempform);
+
+
+            }
+        </script>
+
+    </body>
+
+</html>
