@@ -1603,5 +1603,11 @@ strong,
     color:rgb(255,255,255);
     resize:none;
 }
+.extens{
+    color:yellow;
+}
+.extens:hover{
+    color:rgb(255,205,153);
+}
 
 
