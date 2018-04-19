@@ -249,7 +249,7 @@ http://themeforest.net/licenses
 							<div class="fields clearfix" style="margin-top:3%;">
 								<div class="input">
 									<label for="question">问题 </label>
-									<input id="question" class="email_f" type="text" autocomplete="off"  required placeholder="your question here">
+									<input id="question" class="email_f" type="text" autocomplete="off" placeholder="your question here">
                                 </div>
 								<div class="buttons">
 									<button id="submit" type="button" class="button email_b">Submit</button>
@@ -491,7 +491,7 @@ http://themeforest.net/licenses
 						    var count = 0;
 						    for(var i in result)
 						        count++;
-						    if(count > 1 && result["baidu"] && result["baidu"] !== "很抱歉，这个我也母鸡啊！"){
+						    if(count > 1 && result["baidu"]){
 						        $("#extension").text("");
 						        $("#extension").append('&nbsp;&nbsp;你可能还想知道:<br>');
 						        $.each(result,function(name) {
@@ -517,6 +517,11 @@ http://themeforest.net/licenses
 						}
 					});
 			    });
+			});
+			$("#question").keyup(function(event){
+			    if(event.keyCode ==13){
+			        $("#submit").trigger("click");
+			    }
 			});
         </script>
 
