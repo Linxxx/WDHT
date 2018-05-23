@@ -973,7 +973,11 @@ strong,
 
 .page-cent .p-title{
     display: block;
+    flex-direction:row;
     margin-bottom: 0.5rem;
+}
+#p-title{
+    display:inline-flex;
 }
 .page-cent .p-title h3{
 /*    text-transform: capitalize;   */

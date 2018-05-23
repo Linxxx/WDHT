@@ -39,6 +39,8 @@ http://themeforest.net/licenses
         <link rel="stylesheet" href="/static/ZWGX/css/main.css">
         <link rel="stylesheet" href="/static/ZWGX/css/main_responsive.css">
         <link rel="stylesheet" href="/static/ZWGX/css/style-font1.css">
+        <link rel="stylesheet" href="/static/ZWGX/css/application.css">
+        <link rel="stylesheet" href="/static/ZWGX/css/jq22.css">
 
         <script src="/static/ZWGX/js/vendor/modernizr-2.7.1.min.js"></script>
     </head>
@@ -236,24 +238,29 @@ http://themeforest.net/licenses
             <!-- Begin of register page -->
             <div class="section page-register page page-cent " id="s-register">
                 <section class="content" style="height:80%;">
-                    <header class="p-title">
-                        <h3>问答<i class="ion ion-compose"></i></h3>
+                    <header class="p-title" id="p-title">
+                        <div>
+                            <h3>问答<i class="ion ion-compose"></i></h3>
+                        </div>
+
+                        <div id="score" style="margin-left:10px;margin-top:12px;"></div>
+
                     </header>
                     <div>
                         <form id="mail-subscription" class="form magic send_email_form">
                             <div class="textareadiv">
-                            <textarea id="answer" placeholder="Answer ..." readonly></textarea>
+                            <textarea id="answer" placeholder="答案 ..." readonly></textarea>
                             </div>
                             <div id="extension" class="extensiondiv"></div>
                             <hr>
 							<div class="fields clearfix" style="margin-top:3%;">
 								<div class="input">
-									<label for="question">问题 </label>
-									<input id="question" class="email_f" type="text" autocomplete="off" placeholder="your question here">
+                                    <label for="question">问题 </label>
+									<input id="question" class="email_f" type="text" autocomplete="off" placeholder="请输入您的问题">
                                 </div>
 								<div class="buttons">
-									<button id="submit" type="button" class="button email_b">Submit</button>
-                                    <button id="reset" type="button" class="button email_b">Reset</button>
+									<button id="submit" type="button" class="button email_b">提交</button>
+                                    <button id="reset" type="button" class="button email_b">重置</button>
 								</div>
 							</div>
                         </form>
@@ -336,7 +343,6 @@ http://themeforest.net/licenses
 								</div>
 								<div class="medium-6 columns social-links right">
 									<ul>
-
 										<!-- legal notice -->
 										<li class="show-for-medium-up">
 											<h4>网址</h4>
@@ -368,7 +374,7 @@ http://themeforest.net/licenses
 				<!-- end of contact information -->
 
 				<!-- begin of contact message -->
-				<div class="slide" id="message" data-anchor="message">
+				<div class="slide" id="s-message" data-anchor="message">
 					<section class="content">
 						<header class="p-title">
 							<h3>反馈<i class="ion ion-email">
@@ -391,27 +397,14 @@ http://themeforest.net/licenses
 						<div class="page-block c-right v-zoomIn">
 							<div class="wrapper">
 								<div>
-									<form class="message form send_message_form" method="get" action="ajaxserver/serverfile.php">
-										<div class="fields clearfix">
-											<div class="input">
-												<label for="mes-name">姓名 </label>
-												<input id="mes-name" name="name" type="text" placeholder="Your Name" required></div>
-											<div class="buttons">
-												<button id="submit-message" class="button email_b" name="submit_message">Ok</button>
-											</div>
-										</div>
-										<div class="fields clearfix">
-											<div class="input">
-												<label for="mes-email">邮箱 </label>
-												<input id="mes-email" type="email" placeholder="Email Address" name="email" required>
-											</div>
-										</div>
+									<form class="message form send_message_form">
 										<div class="fields clearfix no-border">
-											<label for="mes-text">意见 </label>
-											<textarea id="mes-text" placeholder="Message ..." name="message" style= "background:transparent;border:solid 1px ;border-radius:5px ;color:rgb(86,119,252);resize:none;" required></textarea>
-											<div>
-												<p class="message-ok invisible">意见已发出，谢谢!</p>
-											</div>
+											<label for="mes-text">问题 </label>
+											<textarea id="qfeedback" placeholder="请输入您想反馈的问题..." name="qfeedback" style= "background:transparent ;border:solid 1px ;border-radius:8px ;color:#FFFFFF;resize:none;" required></textarea>
+
+											<label for="mes-text">答案 </label>
+											<textarea id="afeedback" placeholder="请输入问题对应的答案..." name="afeedback" style= "background:transparent ;border:solid 1px ;border-radius:8px ;color:#FFFFFF;resize:none;" required></textarea>
+                                            <button id="feedback" type="button" class="button email_b" style="margin-top:30px">提交</button>
 										</div>
 									</form>
 								</div>
@@ -443,6 +436,8 @@ http://themeforest.net/licenses
 
         <!-- All Javascript plugins goes here -->
         <script src="/static/ZWGX/js/vendor/jquery-1.11.2.min.js"></script>
+
+        <script src="/static/ZWGX/js/jquery.raty.min.js"></script>
 		<!-- All vendor scripts -->
         <script src="/static/ZWGX/js/vendor/all.js"></script>
 
@@ -466,10 +461,26 @@ http://themeforest.net/licenses
         <script>
 			$(document).ready(function(){
 			    var tmp;
+			    var grade;
+			    $.fn.raty.defaults.path = '/static/ZWGX/img';
+
+			    function bindScore(){
+			        $('#score').raty({
+                        score: 0,
+                        scoreName: 'score',
+                        click: function(score,evt){
+                            grade = score;
+                            $('#score').raty('readOnly',true);
+                            $("#p-title").append('<div class="help-tip" style="margin-left:10px;margin-top:12px;"><p>对答案不满意？您可以将您认为最适当的答案<a href="#contact/message">反馈</a>给我们，帮助我们完善该系统！</p></div>');
+                        }
+                    });
+                }
 
 				$("#reset").on("click",function(){
 					$("#answer").val("");
 				    $("#question").val("");
+				    $("#score").raty("destroy");
+				    $("#extension").text("");
 					$("#question").focus();
 			    });
 
@@ -484,32 +495,31 @@ http://themeforest.net/licenses
 						success:function(result){
 						    tmp = result;
 						    $("#answer").val("");
-						    if(result["baidu"])
+						    $("#score").raty("destroy");
+						    $("#extension").text("");
+						    if(result["baidu"] && result["baidu"] !== "很抱歉，这个我也母鸡啊！") {
+                                $("#answer").val(result["baidu"]);
+                                bindScore();
+                            }
+						    else if(result["baidu"] === "很抱歉，这个我也母鸡啊！")
 						        $("#answer").val(result["baidu"]);
 						    else
 						        $("#answer").val("抱歉啦，这个我也不知道哇！");
 						    var count = 0;
 						    for(var i in result)
 						        count++;
-						    if(count > 1 && result["baidu"]){
-						        $("#extension").text("");
-						        $("#extension").append('&nbsp;&nbsp;你可能还想知道:<br>');
-						        $.each(result,function(name) {
-						            if(name !== "baidu")
-						            $("#extension").append('&nbsp;&nbsp;<a class="extens">'+name+'</a><br>')
+						    if(count > 1 && result["baidu"]) {
+                                $("#extension").append('&nbsp;&nbsp;你可能还想知道:<br>');
+                                $.each(result, function (name) {
+                                    if (name !== "baidu")
+                                        $("#extension").append('&nbsp;&nbsp;<a class="extens">' + name + '</a><br>')
                                 });
-						        $(".extens").on("click",function(){
-						            $("#answer").val("");
-						            $("#answer").val((tmp[$(this).text()]));
-						        });
-						        $("#reset").on("click",function(){
-						            $("#answer").val("");
-						            $("#extension").text("");
-						            $("#question").val("");
-						            $("#question").focus();
-						        });
-                            }else{
-						        $("#extension").text("");
+                                $(".extens").on("click", function () {
+                                    $("#answer").val("");
+                                    $("#score").raty("destroy");
+                                    $("#answer").val((tmp[$(this).text()]));
+                                    bindScore();
+                                });
                             }
 						},
 						error:function(){
@@ -523,6 +533,12 @@ http://themeforest.net/licenses
 			        $("#submit").trigger("click");
 			    }
 			});
+			$("#feedback").on("click",function(){
+			    if($("#qfeedback").val() && $("#afeedback").val())
+			        alert("我们已收到您的反馈，感谢您的配合！");
+			        $("#qfeedback").val("");
+			        $("#afeedback").val("");
+            })
         </script>
 
         <!-- Google Analytics: Uncomment and change UA-XXXXX-X to be your site"s ID. -->
