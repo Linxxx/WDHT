@@ -480,11 +480,16 @@ http://themeforest.net/licenses
 					$("#answer").val("");
 				    $("#question").val("");
 				    $("#score").raty("destroy");
+				    $(".help-tip").remove();
 				    $("#extension").text("");
 					$("#question").focus();
 			    });
 
 				$("#submit").on("click",function(){
+                    $("#answer").val("");
+                    $("#score").raty("destroy");
+                    $(".help-tip").remove();
+                    $("#extension").text("");
 					var question = $("#question").val();
 					var url="/website/submit/";
 					$.ajax({
@@ -494,9 +499,6 @@ http://themeforest.net/licenses
 						dataType:"json",
 						success:function(result){
 						    tmp = result;
-						    $("#answer").val("");
-						    $("#score").raty("destroy");
-						    $("#extension").text("");
 						    if(result["baidu"] && result["baidu"] !== "很抱歉，这个我也母鸡啊！") {
                                 $("#answer").val(result["baidu"]);
                                 bindScore();
