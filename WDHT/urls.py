@@ -21,6 +21,8 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
     url(r'^$', app1_v.index2),
+    url(r'^pingfen/$',app1_v.pingfen),
+    url(r'^fankui/$',app1_v.fankui),
     url(r'^index2/$', app1_v.index2),
     url(r'^index/$', app1_v.index),
     url(r'^website/submit/$', app1_v.submit),

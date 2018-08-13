@@ -8,6 +8,7 @@ from socket import socket, AF_INET, SOCK_STREAM
 import sys,importlib
 import json
 from django.views.decorators.csrf import csrf_protect
+import pingjia as pj
 
 importlib.reload(sys)
 
@@ -47,7 +48,6 @@ def submit(req):
                 question = '无'
             print ("===")
     answer = client(question.strip())
-
     print (answer)
     # return JsonResponse(answer)
     return HttpResponse(answer, content_type = 'application/json')
@@ -70,3 +70,27 @@ def submit2(req):
     # return HttpResponse(answer)
     # return render(req, "ZWGX/index.html", {'Answer': answer, 'Question': question})
     return render(req, "index21.html", {'Answer': answer, 'Question':question})
+
+def pingfen(req):
+    if req.POST:
+        if 'grade' in req.POST:
+            grade = req.POST['grade']
+        if 'schoolname' in req.POST:
+            schoolname = req.POST['schoolname']
+        if 'intention' in req.POST:
+            intention = req.POST['intention']
+        if 'index' in req.POST:
+            index = req.POST['index']
+        if 'answer' in req.POST:
+            answer = req.POST['answer']
+        pj.PingFen(schoolname,intention,index,grade,answer)
+    return HttpResponse("OK", content_type = 'application/text')
+
+def fankui(req):
+    if req.POST:
+        if 'qfeedback' in req.POST:
+            qfeedback = req.POST['qfeedback']
+        if 'afeedback' in req.POST:
+            afeedback = req.POST['afeedback']
+        pj.FanKui(qfeedback,afeedback)
+    return HttpResponse("OK", content_type = 'application/text')

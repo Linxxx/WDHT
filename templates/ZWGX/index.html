@@ -462,6 +462,9 @@ http://themeforest.net/licenses
 			$(document).ready(function(){
 			    var tmp;
 			    var grade;
+			    var schoolname = "";
+			    var intention = "";
+			    var index = -1;
 			    $.fn.raty.defaults.path = '/static/ZWGX/img';
 
 			    function bindScore(){
@@ -470,8 +473,18 @@ http://themeforest.net/licenses
                         scoreName: 'score',
                         click: function(score,evt){
                             grade = score;
-                            $('#score').raty('readOnly',true);
-                            $("#p-title").append('<div class="help-tip" style="margin-left:10px;margin-top:12px;"><p>对答案不满意？您可以将您认为最适当的答案<a href="#contact/message">反馈</a>给我们，帮助我们完善该系统！</p></div>');
+                            var url="/pingfen/";
+                            $.ajax({
+						        type:"Post",
+						        url:url,
+						        data:{"grade":grade,"schoolname":schoolname,"intention":intention,"index":index,"answer":$("#answer").val(),csrfmiddlewaretoken: '{{ csrf_token }}'},
+						        dataType:"text",
+						        success:function(result){
+						            $('#score').raty('readOnly',true);
+                                    $("#p-title").append('<div class="help-tip" style="margin-left:10px;margin-top:12px;"><p>对答案不满意？您可以将您认为最适当的答案<a href="#contact/message">反馈</a>给我们，帮助我们完善该系统！</p></div>');
+						        }
+                            });
+
                         }
                     });
                 }
@@ -499,6 +512,9 @@ http://themeforest.net/licenses
 						dataType:"json",
 						success:function(result){
 						    tmp = result;
+						    schoolname = result["schoolname"];
+						    intention = result["intention"];
+						    index = result["index"];
 						    if(result["baidu"] && result["baidu"] !== "很抱歉，这个我也母鸡啊！") {
                                 $("#answer").val(result["baidu"]);
                                 bindScore();
@@ -510,10 +526,10 @@ http://themeforest.net/licenses
 						    var count = 0;
 						    for(var i in result)
 						        count++;
-						    if(count > 1 && result["baidu"]) {
+						    if(count > 4 && result["baidu"]) {
                                 $("#extension").append('&nbsp;&nbsp;你可能还想知道:<br>');
                                 $.each(result, function (name) {
-                                    if (name !== "baidu")
+                                    if (name !== "baidu" && name != "schoolname" && name != "intention" && name != "index")
                                         $("#extension").append('&nbsp;&nbsp;<a class="extens">' + name + '</a><br>')
                                 });
                                 $(".extens").on("click", function () {
@@ -536,10 +552,20 @@ http://themeforest.net/licenses
 			    }
 			});
 			$("#feedback").on("click",function(){
-			    if($("#qfeedback").val() && $("#afeedback").val())
-			        alert("我们已收到您的反馈，感谢您的配合！");
-			        $("#qfeedback").val("");
-			        $("#afeedback").val("");
+			    if($("#qfeedback").val() && $("#afeedback").val()){
+			        var url="/fankui/";
+			        $.ajax({
+                        type: "Post",
+                        url: url,
+                        data: {"qfeedback": qfeedback,"afeedback":afeedback, csrfmiddlewaretoken: '{{ csrf_token }}'},
+                        dataType: "text",
+                        success: function (result) {
+                             alert("我们已收到您的反馈，感谢您的配合！");
+                             $("#qfeedback").val("");
+			                 $("#afeedback").val("");
+                        }
+                    })
+                }
             })
         </script>
 
