@@ -8,7 +8,7 @@ from socket import socket, AF_INET, SOCK_STREAM
 import sys,importlib
 import json
 from django.views.decorators.csrf import csrf_protect
-import pingjia as pj
+import app1.pingjia as pj
 
 importlib.reload(sys)
 
