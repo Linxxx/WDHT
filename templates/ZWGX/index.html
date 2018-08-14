@@ -552,7 +552,9 @@ http://themeforest.net/licenses
 			    }
 			});
 			$("#feedback").on("click",function(){
-			    if($("#qfeedback").val() && $("#afeedback").val()){
+			    var qfeedback = $("#qfeedback").val();
+			    var afeedback = $("#afeedback").val();
+			    if(qfeedback && afeedback){
 			        var url="/fankui/";
 			        $.ajax({
                         type: "Post",
@@ -565,6 +567,10 @@ http://themeforest.net/licenses
 			                 $("#afeedback").val("");
                         }
                     })
+                }else{
+			        alert("请正确输入!");
+			        $("#qfeedback").val("");
+                    $("#afeedback").val("");
                 }
             })
         </script>
